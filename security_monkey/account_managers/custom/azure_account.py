@@ -11,4 +11,4 @@ class AzureAccountManager(AccountManager):
         ]
 
     def __init__(self):
-        super(AccountManager, self).__init__()
+        super(AzureAccountManager, self).__init__()
