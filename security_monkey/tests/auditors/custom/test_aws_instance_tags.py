@@ -46,6 +46,10 @@ AWS_INSTANCE_TAGS = {
     {
       "Value": "test",
       "Key": "service"
+    },
+    {
+      "Value": "test@gc.com",
+      "Key": "owner"
     }
   ],
   "vpc_id": "vpc-111aaabbb"
