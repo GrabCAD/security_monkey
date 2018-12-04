@@ -79,7 +79,8 @@ class EC2InstanceTagsAuditorTestCase(SecurityMonkeyTestCase):
         item = EC2InstanceItem(region=AWS_DEFAULT_REGION, account='TEST_ACCOUNT', name='AWS_INSTANCE_TAGS',
                                     config=AWS_INSTANCE_TAGS)
 
+        print('test!!!' + str(item))
         test = auditor.check_instance_tags(item)
-        print(test)
+        print('test!!!' + str(test))
         #self.assertEquals(len(item.audit_issues), 1)
         self.assertEquals(item.audit_issues[0].score, 0)
