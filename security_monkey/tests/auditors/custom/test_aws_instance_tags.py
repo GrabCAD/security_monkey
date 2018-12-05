@@ -141,4 +141,4 @@ class EC2InstanceTagsAuditorTestCase(SecurityMonkeyTestCase):
         print('test!!!' + str(item.audit_issues))
         print(dir(auditor))
         print(dir(item))
-        self.assertIsNone(item.audit_issues)
+        self.assertFalse(item.audit_issues)
