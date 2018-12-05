@@ -126,13 +126,12 @@ class EC2InstanceTagsAuditorTestCase(SecurityMonkeyTestCase):
                                     config=AWS_INSTANCE_TAG_MISSING)
 
         print('test!!!' + str(item))
-        test = auditor.check_instance_tags(item)
+        auditor.check_instance_tags(item)
         print('test!!!' + str(item.audit_issues))
-        print('test!!!' + str(test))
         print(dir(auditor))
         print(dir(item))
-        self.assertEquals(len(item.audit_issues), 0)
-        self.assertEquals(item.audit_issues[0].score, 0)
+        self.assertEquals(len(item.audit_issues), 1)
+        self.assertEquals(item.audit_issues[0].score, 1)
 
     def test_check_instance_tags_exist(self):
         auditor = EC2InstanceTagsAuditor(accounts=['TEST_ACCOUNT'])
