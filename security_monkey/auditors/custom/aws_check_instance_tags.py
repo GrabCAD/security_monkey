@@ -39,7 +39,7 @@ class EC2InstanceTagsAuditor(Auditor):
                 issues.add('service')
                 existing_tags.add('service')
             else:
-                continue
+                return 'alles gut'
         for issue in issues:
             app.logger.warning('issues list' + str(issues))
             self.add_issue(1, 'Instance lacks tag(s):' + str(issue), instance, notes='None')
