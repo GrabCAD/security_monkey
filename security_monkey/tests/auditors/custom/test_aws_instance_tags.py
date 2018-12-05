@@ -123,7 +123,7 @@ class EC2InstanceTagsAuditorTestCase(SecurityMonkeyTestCase):
         auditor.prep_for_audit()
 
         item = EC2InstanceItem(region=AWS_DEFAULT_REGION, account='TEST_ACCOUNT', name='AWS_INSTANCE_TAGS',
-                                    config=AWS_INSTANCE_TAGS)
+                                    config=AWS_INSTANCE_TAG_MISSING)
 
         print('test!!!' + str(item))
         print('test!!!' + str(item.audit_issues))
