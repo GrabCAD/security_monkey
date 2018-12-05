@@ -83,5 +83,6 @@ class EC2InstanceTagsAuditorTestCase(SecurityMonkeyTestCase):
         test = auditor.check_instance_tags(item)
         print('test!!!' + str(test))
         print(dir(auditor))
+        print(dir(item))
         self.assertEquals(len(item.audit_issues), 1)
         #self.assertEquals(item.audit_issues[0].score, None)
