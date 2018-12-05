@@ -4,6 +4,8 @@ from security_monkey.auditors.custom.aws_check_instance_tags import EC2InstanceT
 from security_monkey.watchers.ec2.ec2_instance import EC2InstanceItem
 from security_monkey.datastore import Account, AccountType
 from security_monkey import db
+import unittest
+from unittest import mock
 
 AWS_INSTANCE_TAGS = {
   "image_id": "ami-123456789",
@@ -79,6 +81,7 @@ class EC2InstanceTagsAuditorTestCase(SecurityMonkeyTestCase):
         item = EC2InstanceItem(region=AWS_DEFAULT_REGION, account='TEST_ACCOUNT', name='AWS_INSTANCE_TAGS',
                                     config=AWS_INSTANCE_TAGS)
 
+        print('test!!!' + str(item))
         print('test!!!' + str(item.audit_issues))
         test = auditor.check_instance_tags(item)
         print('test!!!' + str(test))
