@@ -126,8 +126,8 @@ class EC2InstanceTagsAuditorTestCase(SecurityMonkeyTestCase):
                                     config=AWS_INSTANCE_TAG_MISSING)
 
         print('test!!!' + str(item))
-        print('test!!!' + str(item.audit_issues))
         test = auditor.check_instance_tags(item)
+        print('test!!!' + str(item.audit_issues))
         print('test!!!' + str(test))
         print(dir(auditor))
         print(dir(item))
