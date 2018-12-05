@@ -114,7 +114,6 @@ class EC2Instance(Watcher):
 class EC2InstanceItem(ChangeItem):
 
     def __init__(self, region=None, account=None, name=None, config=None, source_watcher=None):
-        print(str(config))
         super(EC2InstanceItem, self).__init__(
             index=EC2Instance.index,
             region=region,

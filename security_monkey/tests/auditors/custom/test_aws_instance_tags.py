@@ -125,11 +125,7 @@ class EC2InstanceTagsAuditorTestCase(SecurityMonkeyTestCase):
         item = EC2InstanceItem(region=AWS_DEFAULT_REGION, account='TEST_ACCOUNT', name='AWS_INSTANCE_TAGS',
                                     config=AWS_INSTANCE_TAG_MISSING)
 
-        print('test!!!' + str(item))
         auditor.check_instance_tags(item)
-        print('test!!!' + str(item.audit_issues))
-        print(dir(auditor))
-        print(dir(item))
         self.assertEquals(len(item.audit_issues), 1)
         self.assertEquals(item.audit_issues[0].score, 1)
 
@@ -140,14 +136,9 @@ class EC2InstanceTagsAuditorTestCase(SecurityMonkeyTestCase):
         item = EC2InstanceItem(region=AWS_DEFAULT_REGION, account='TEST_ACCOUNT', name='AWS_INSTANCE_TAGS',
                                     config=AWS_INSTANCE_TAGS)
 
-        #print('test!!!' + str(item))
-        #print('test!!!' + str(item.audit_issues))
-        test = auditor.check_instance_tags(item)
-        #print('test!!!' + str(test))
-        #print(dir(auditor))
-        #print(dir(item))
-        self.assertEquals(len(item.audit_issues), 0)
-        self.assertEquals(item.audit_issues[0].score, 0)
-
-
-        #assert len(self.s3_items[0].audit_issues) == 0
+        print('test!!!' + str(item))
+        auditor.check_instance_tags(item)
+        print('test!!!' + str(item.audit_issues))
+        print(dir(auditor))
+        print(dir(item))
+        self.assertIsNone(item.audit_issues)
