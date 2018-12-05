@@ -5,6 +5,52 @@ from security_monkey.watchers.ec2.ec2_instance import EC2InstanceItem
 from security_monkey.datastore import Account, AccountType
 from security_monkey import db
 
+AWS_INSTANCE_TAG_MISSING = {
+  "image_id": "ami-123456789",
+  "instance_id": "i-123456789",
+  "instance_type": "r4.xlarge",
+  "launch_time": "2018-10-29 10:17:33+00:00",
+  "name": "test123",
+  "private_dns_name": "ip-172-1-1-1.ec2.internal",
+  "private_ip_address": "172.1.1.11",
+  "public_dns_name": "ec2-107-11-1-11.compute-1.amazonaws.com",
+  "public_ip_address": "107.11.11.11",
+  "security_groups": [
+    {
+      "GroupName": "test_secgroup",
+      "GroupId": "sg-12345"
+    }
+  ],
+  "state": {
+    "Code": 16,
+    "Name": "running"
+  },
+  "subnet_id": "subnet-111aaaaa",
+  "tags": [
+    {
+      "Value": "test123",
+      "Key": "Description"
+    },
+    {
+      "Value": "test123",
+      "Key": "Name"
+    },
+    {
+      "Value": "ci",
+      "Key": "account"
+    },
+    {
+      "Value": "ci",
+      "Key": "product"
+    },
+    {
+      "Value": "test",
+      "Key": "service"
+    }
+  ],
+  "vpc_id": "vpc-111aaabbb"
+}
+
 AWS_INSTANCE_TAGS = {
   "image_id": "ami-123456789",
   "instance_id": "i-123456789",
@@ -72,7 +118,7 @@ class EC2InstanceTagsAuditorTestCase(SecurityMonkeyTestCase):
         db.session.add(account)
         db.session.commit()
 
-    def test_check_instance_tags_exist(self):
+    def test_check_instance_tag_missing(self):
         auditor = EC2InstanceTagsAuditor(accounts=['TEST_ACCOUNT'])
         auditor.prep_for_audit()
 
@@ -85,6 +131,22 @@ class EC2InstanceTagsAuditorTestCase(SecurityMonkeyTestCase):
         print('test!!!' + str(test))
         print(dir(auditor))
         print(dir(item))
+        self.assertEquals(len(item.audit_issues), 0)
+        self.assertEquals(item.audit_issues[0].score, 0)
+
+    def test_check_instance_tags_exist(self):
+        auditor = EC2InstanceTagsAuditor(accounts=['TEST_ACCOUNT'])
+        auditor.prep_for_audit()
+
+        item = EC2InstanceItem(region=AWS_DEFAULT_REGION, account='TEST_ACCOUNT', name='AWS_INSTANCE_TAGS',
+                                    config=AWS_INSTANCE_TAGS)
+
+        #print('test!!!' + str(item))
+        #print('test!!!' + str(item.audit_issues))
+        test = auditor.check_instance_tags(item)
+        #print('test!!!' + str(test))
+        #print(dir(auditor))
+        #print(dir(item))
         self.assertEquals(len(item.audit_issues), 0)
         self.assertEquals(item.audit_issues[0].score, 0)
 
