@@ -72,7 +72,7 @@ class EC2InstanceTagsAuditorTestCase(SecurityMonkeyTestCase):
         db.session.add(account)
         db.session.commit()
 
-    def test_check_instance_tags(self):
+    def test_check_instance_tags_exist(self):
         auditor = EC2InstanceTagsAuditor(accounts=['TEST_ACCOUNT'])
         auditor.prep_for_audit()
 
@@ -85,5 +85,8 @@ class EC2InstanceTagsAuditorTestCase(SecurityMonkeyTestCase):
         print('test!!!' + str(test))
         print(dir(auditor))
         print(dir(item))
-        self.assertEquals(len(item.audit_issues), 1)
-        #self.assertEquals(item.audit_issues[0].score, None)
+        self.assertEquals(len(item.audit_issues), 0)
+        self.assertEquals(item.audit_issues[0].score, 0)
+
+
+        #assert len(self.s3_items[0].audit_issues) == 0
