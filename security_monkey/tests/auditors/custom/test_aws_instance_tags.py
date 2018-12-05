@@ -51,7 +51,7 @@ AWS_INSTANCE_TAG_MISSING = {
   "vpc_id": "vpc-111aaabbb"
 }
 
-AWS_INSTANCE_TAGS = {
+AWS_INSTANCE_TAGS_EXIST = {
   "image_id": "ami-123456789",
   "instance_id": "i-123456789",
   "instance_type": "r4.xlarge",
@@ -134,11 +134,7 @@ class EC2InstanceTagsAuditorTestCase(SecurityMonkeyTestCase):
         auditor.prep_for_audit()
 
         item = EC2InstanceItem(region=AWS_DEFAULT_REGION, account='TEST_ACCOUNT', name='AWS_INSTANCE_TAGS',
-                                    config=AWS_INSTANCE_TAGS)
+                                    config=AWS_INSTANCE_TAGS_EXIST)
 
-        print('test!!!' + str(item))
         auditor.check_instance_tags(item)
-        print('test!!!' + str(item.audit_issues))
-        print(dir(auditor))
-        print(dir(item))
         self.assertFalse(item.audit_issues)

@@ -14,7 +14,7 @@ class EC2InstanceTagsAuditor(Auditor):
 
     def check_instance_tags(self, instance):
         """
-        show instances that have no tags
+        show instances that have no specific tags
         """
         allowed_tags = ['Name', 'owner', 'service', 'product']
         existing_tags = set([])
