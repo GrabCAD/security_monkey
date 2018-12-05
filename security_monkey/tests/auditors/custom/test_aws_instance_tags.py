@@ -4,8 +4,6 @@ from security_monkey.auditors.custom.aws_check_instance_tags import EC2InstanceT
 from security_monkey.watchers.ec2.ec2_instance import EC2InstanceItem
 from security_monkey.datastore import Account, AccountType
 from security_monkey import db
-import unittest
-from unittest import mock
 
 AWS_INSTANCE_TAGS = {
   "image_id": "ami-123456789",
