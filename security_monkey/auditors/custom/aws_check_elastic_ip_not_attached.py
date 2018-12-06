@@ -10,7 +10,7 @@ class UnusedElasticIPAuditor(Auditor):
     def __init__(self, accounts=None, debug=False):
         super(UnusedElasticIPAuditor, self).__init__(accounts=accounts, debug=debug)
 
-    def check_volume_not_attached(self, elastic_ip):
+    def check_elasticip_not_attached(self, elastic_ip):
         """
         show elastic ip's that are not attached to any instance
         """

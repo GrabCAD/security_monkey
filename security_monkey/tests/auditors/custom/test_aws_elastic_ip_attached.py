@@ -52,7 +52,7 @@ class UnusedElasticIPAuditorTestCase(SecurityMonkeyTestCase):
         item = ElasticIPItem(region=AWS_DEFAULT_REGION, account='TEST_ACCOUNT', name='AWS_ELASTICIP',
                                     config=AWS_ELASTICIP_NOT_ATTACHED)
 
-        auditor.check_volume_not_attached(item)
+        auditor.check_elasticip_not_attached(item)
         self.assertEquals(len(item.audit_issues), 1)
         self.assertEquals(item.audit_issues[0].score, 1)
 
@@ -63,5 +63,5 @@ class UnusedElasticIPAuditorTestCase(SecurityMonkeyTestCase):
         item = ElasticIPItem(region=AWS_DEFAULT_REGION, account='TEST_ACCOUNT', name='AWS_ELASTICIP',
                                     config=AWS_ELASTICIP_ATTACHED)
 
-        auditor.check_volume_not_attached(item)
+        auditor.check_elasticip_not_attached(item)
         self.assertFalse(item.audit_issues)
