@@ -37,7 +37,7 @@ AWS_VOLUME_NOT_ATTACHED = {
     "volume_type": "gp2"
 }
 
-class UnusedVolumeAttachedAuditorTestCase(SecurityMonkeyTestCase):
+class UnusedVolumeAuditorTestCase(SecurityMonkeyTestCase):
 
     def pre_test_setup(self):
         UnusedEBSVolumeAuditor(accounts=['TEST_ACCOUNT']).OBJECT_STORE.clear()
