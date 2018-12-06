@@ -19,13 +19,13 @@ AWS_ELASTICIP_ATTACHED = {
 
 AWS_ELASTICIP_NOT_ATTACHED = {
     "allocation_id": "eipalloc-123456789",
-    "assigned_to": "null",
-    "association_id": "null",
+    "assigned_to": null,
+    "association_id": null,
     "domain": "vpc",
-    "instance_id": "null",
-    "network_interface_id": "null",
-    "network_interface_owner_id": "null",
-    "private_ip_address": "null",
+    "instance_id": null,
+    "network_interface_id": null,
+    "network_interface_owner_id": null,
+    "private_ip_address": null,
     "public_ip": "54.1.1.1"
 }
 
